@@ -28,3 +28,19 @@ OR
   kubectl port-forward $POD_NAME 8080:8080
 
 {{- end }}
+
+{{- if .Values.operator.enabled }}
+You can create operator resources to automatically publish your charts from git repos by creating 
+chartmuseums such as:
+
+apiVersion: "cm.bitnami.com/v1alpha1"
+kind: "Chartmuseum"
+metadata:
+  name: "myrepo"
+spec:
+  git: "https://github.com/foo/mycharts"
+  dependencies:
+  - name: bitnami
+    url: "https://charts.bitnami.com/bitnami"
+    
+{{- end}}

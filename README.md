@@ -15,6 +15,7 @@ Please also see https://github.com/kubernetes-helm/chartmuseum
   - [Prerequisites](#prerequisites)
   - [Configuration](#configuration)
   - [Installation](#installation)
+    - [Using operator for local storage](#using-operator-for-local-storage)
     - [Using with Amazon S3](#using-with-amazon-s3)
       - [permissions grant with access keys](#permissions-grant-with-access-keys)
       - [permissions grant with IAM instance profile](#permissions-grant-with-iam-instance-profile)
@@ -122,6 +123,24 @@ Specify each parameter using the `--set key=value[,key=value]` argument to
 ```shell
 helm install --name my-chartmuseum -f custom.yaml stable/chartmuseum
 ```
+
+### Using operator for local storage
+
+You can create operator resources to automatically publish your charts from git repos by creating 
+chartmuseums such as:
+
+```
+apiVersion: "cm.bitnami.com/v1alpha1"
+kind: "Chartmuseum"
+metadata:
+  name: "myrepo"
+spec:
+  git: "https://github.com/foo/mycharts"
+  dependencies:
+  - name: bitnami
+    url: "https://charts.bitnami.com/bitnami"
+```
+this will automatically sync and pack your charts and publish them via chartmuseum
 
 ### Using with Amazon S3
 Make sure your environment is properly setup to access `my-s3-bucket`

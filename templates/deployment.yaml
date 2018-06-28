@@ -21,6 +21,7 @@ spec:
         release: {{ .Release.Name | quote }}
     spec:
       containers:
+      {{- if .Values.operator.enabled}}
       - name: sidecar
         image: vtuson/cmsidecar
         ports:
@@ -34,6 +35,7 @@ spec:
         volumeMounts:
         - mountPath: /storage
           name: storage-volume
+      {{- end }}
       - name: {{ .Chart.Name }}
         image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
