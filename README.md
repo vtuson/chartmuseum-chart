@@ -1,3 +1,7 @@
+# NOTE
+
+this repo is a fork of the upstream chart and adds a PoC for a chartmuseum operator
+
 # ChartMuseum Helm Chart
 
 Deploy your own private ChartMuseum.   
