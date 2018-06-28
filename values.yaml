@@ -7,6 +7,8 @@ image:
   repository: chartmuseum/chartmuseum
   tag: v0.7.0
   pullPolicy: IfNotPresent
+operator:
+  enabled: true
 env:
   open:
     # storage backend, can be one of: local, alibaba, amazon, google, microsoft

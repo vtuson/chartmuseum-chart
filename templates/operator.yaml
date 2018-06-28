@@ -1,0 +1,32 @@
+{{- if .Values.operator.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "chartmuseum.fullname" . }}-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: {{ include "chartmuseum.fullname" . }}-operator
+  template:
+    metadata:
+      labels:
+        name: {{ include "chartmuseum.fullname" . }}-operator
+    spec:
+      serviceAccountName: {{ include "chartmuseum.fullname" . }}-operator
+      containers:
+        - name: cm-operator
+          image: vtuson/cm-operator
+          command:
+          - cm-operator
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: CMSERVICE
+              value: {{ include "chartmuseum.fullname" . }}
+            - name: CMPORT
+              value: "3000"
+{{- end }}
