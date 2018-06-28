@@ -3,8 +3,8 @@
 This repo is a fork of the upstream chart and adds a PoC for a chartmuseum operator
 
 What it does is:
-* adds a sidecar container to the Chartmuseum pod that exposes a RESTapi for setting up git repos to clone and helm package
-* it deploys an operator that exposes a CRD called Chartmuseum where you can define git repo and dependencies for the chart
+* adds a [sidecar container](https://github.com/vtuson/cmsidecar) to the Chartmuseum pod that exposes a RESTapi for setting up git repos to clone and helm package
+* it deploys an [operator](https://github.com/vtuson/cm-operator) that exposes a CRD called Chartmuseum where you can define git repo and dependencies for the chart
 * it creates a Cronjob object per each CRD added that will hit the RESTapi to git pull & helm package at regular intervals
 
 # ChartMuseum Helm Chart
