@@ -23,6 +23,12 @@ rules:
   verbs:
   - "*"
 - apiGroups:
+  - batch
+  resources:
+  - "*"
+  verbs:
+  - "*"
+- apiGroups:
   - apps
   resources:
   - deployments
